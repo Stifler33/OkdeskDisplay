@@ -15,7 +15,7 @@ class FormTask : public QWidget
 public:
     explicit FormTask(QWidget *parent = nullptr);
     ~FormTask();
-    void showTask(QList<Tasks> listTask);
+    void showTask(Tasks task);
 private:
     Ui::FormTask *ui;
 };

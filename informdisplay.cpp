@@ -14,11 +14,18 @@ InformDisplay::~InformDisplay()
 
 void InformDisplay::acceptTasks(QList<Tasks> _listTasks)
 {
-    QString str = "%1 %2 %3";
-    ui->textEdit->clear();
     for (auto task : _listTasks)
     {
-        ui->textEdit->append(str.arg(task.number).arg(task.theme, task.company));
+        FormTask *formTask = new FormTask;
+        foreach (auto _task, qlistTask)
+        {
+            if (_task.first == task.number)
+            {
+                continue;
+            }
+            qlistTask.push_back(QPair<int, FormTask*>{task.number, formTask});
+            formTask->showTask(task);
+            ui->verticalLayout->addWidget(formTask);
+        }
     }
-
 }
