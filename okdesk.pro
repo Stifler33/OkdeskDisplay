@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    formtask.cpp \
     main.cpp \
     general.cpp \
 	informdisplay.cpp \
@@ -16,6 +17,7 @@ SOURCES += \
 	setparameteraccount.cpp
 
 HEADERS += \
+    formtask.h \
     main.h \
     general.h \
 	informdisplay.h \
@@ -23,6 +25,7 @@ HEADERS += \
 	setparameteraccount.h
 
 FORMS += \
+    formtask.ui \
     informdisplay.ui \
         setparameteraccount.ui
 	
