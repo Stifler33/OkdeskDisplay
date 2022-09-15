@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <okdeskapi.h>
+#include <QList>
 #include "formtask.h"
 
 QT_BEGIN_NAMESPACE
@@ -20,11 +21,12 @@ public:
     ~InformDisplay();
 
 private:
-
-    QList<Tasks> listTasksID;
+    QList<Tasks> listTasksID;    
+    QList<Tasks>::iterator findTask(int num);
     Ui::InformDisplay *ui;
     //QPair<int, FormTask> numberAndTask;
-    QList<QPair<int, FormTask*>> qlistTask;
+    QMap<int, FormTask*> mapTask;
+    bool thereIsTask(int numberTask);
 public slots:
     void acceptTasks(QList<Tasks> _listTasks);
 };

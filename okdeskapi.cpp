@@ -77,15 +77,15 @@ void OkdeskApi::parsingJson()
         }
         if (buffer != listTasks)
         {          
-            listTasks = buffer;
+            listTasks = buffer;            
             emit newTasks(listTasks);
             if (!buffer.isEmpty())
             {
-                player->setMedia(QUrl::fromLocalFile("message.mp3"));
-                player->play();
+                //player->setMedia(QUrl::fromLocalFile("message.mp3"));
+                //player->play();
             }else{
-                player->setMedia(QUrl::fromLocalFile("message_not.mp3"));
-                player->play();
+                //player->setMedia(QUrl::fromLocalFile("message_not.mp3"));
+                //player->play();
             }
         }
 

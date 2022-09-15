@@ -12,20 +12,53 @@ InformDisplay::~InformDisplay()
     delete ui;
 }
 
+QList<Tasks>::iterator InformDisplay::findTask(int num)
+{
+    for (auto task = listTasksID.begin(); task != listTasksID.end(); task++)
+    {
+        if (task->number == num) return task;
+    }
+    return listTasksID.end();
+}
+
+bool InformDisplay::thereIsTask(int numberTask)
+{
+    for (auto task : listTasksID)
+    {
+        if (task.number == numberTask) return true;
+    }
+    return false;
+}
+
 void InformDisplay::acceptTasks(QList<Tasks> _listTasks)
 {
-    for (auto task : _listTasks)
+    bool thereIsNewTask = false;
+    bool taskEdit = false;
+
+    if (listTasksID.isEmpty())
     {
-        FormTask *formTask = new FormTask;
-        foreach (auto _task, qlistTask)
+        listTasksID = _listTasks;
+        thereIsNewTask = true;
+    }else{
+        for (auto newTask : _listTasks)
         {
-            if (_task.first == task.number)
+            auto i = findTask(newTask.number);
+            if (i != listTasksID.end())
             {
-                continue;
+                i->theme = newTask.theme;
+                i->company = newTask.company;
             }
-            qlistTask.push_back(QPair<int, FormTask*>{task.number, formTask});
-            formTask->showTask(task);
-            ui->verticalLayout->addWidget(formTask);
+        }
+    }
+
+    if (thereIsNewTask)
+    {
+        for (auto newTask : listTasksID)
+        {
+            FormTask *form = new FormTask;
+            form->showTask(newTask);
+            ui->verticalLayout->addWidget(form);
+            mapTask.insert(newTask.number, form);
         }
     }
 }
