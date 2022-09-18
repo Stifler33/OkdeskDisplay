@@ -21,13 +21,17 @@ public:
     ~InformDisplay();
 
 private:
-    QList<Tasks> listTasksID;    
+    QList<Tasks> oldListTask;
     QList<Tasks>::iterator findTask(int num);
+    QList<Tasks>::iterator findTask(QList<Tasks> &list,int num);
     Ui::InformDisplay *ui;
     //QPair<int, FormTask> numberAndTask;
     QMap<int, FormTask*> mapTask;
     bool thereIsTask(int numberTask);
+    void addNewFormTask(Tasks newTask);
+    void addNewFormTask(QList<Tasks> listNewTask);
+
 public slots:
-    void acceptTasks(QList<Tasks> _listTasks);
+    void acceptTasks(QList<Tasks> newListTask);
 };
 #endif // INFORMDISPLAY_H
