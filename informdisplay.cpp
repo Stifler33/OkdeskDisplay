@@ -81,8 +81,14 @@ void InformDisplay::acceptTasks(QList<Tasks> newListTask)
                 mapTask[oldTask.number]->showTask(*oldTaskFromTheNewList);
             }else{//если не нашли то удаляем
                 //mapTask[oldTaskFromTheNewList->number]->close();
-                ui->verticalLayout->removeWidget(mapTask[oldTaskFromTheNewList->number]);
-                mapTask.erase(mapTask.find(oldTaskFromTheNewList->number));
+                qDebug() << oldTask.number;
+                ui->verticalLayout->removeWidget(mapTask[oldTask.number]);
+                mapTask[oldTask.number]->deleteLater();
+                mapTask.erase(mapTask.find(oldTask.number));
+                if (findTask(oldListTask, oldTask.number) != oldListTask.end())
+                {
+                    oldListTask.erase(findTask(oldListTask, oldTask.number));
+                }
             }
         }
 
@@ -94,6 +100,7 @@ void InformDisplay::acceptTasks(QList<Tasks> newListTask)
                 addNewFormTask(newTask);
             }
         }
+
     }
 
 
